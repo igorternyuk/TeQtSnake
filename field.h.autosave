@@ -1,0 +1,26 @@
+#ifndef FIELD_H
+#define FIELD_H
+
+#include <QFrame>
+#include <QKeyEvent>
+
+#include "snakemodel.h"
+#include "snakecontroller.h"
+
+class Field : public QFrame
+{
+    Q_OBJECT
+public:
+    Field(QWidget *parent = nullptr);
+protected:
+    void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
+    void keyPressEvent(QKeyEvent *event) Q_DECL_OVERRIDE;
+private:
+    SnakeModel *model_;
+    SnakeController *model_;
+    void drawField(QPainter &painter);
+    void drawFood(QPainter)
+
+};
+
+#endif // FIELD_H

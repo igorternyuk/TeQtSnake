@@ -23,7 +23,7 @@ private:
     const int POINT_SIZE = 20;
     const int TEXT_LEFT = 20;
     const int TEXT_TOP = 135;
-    const QColor FIELD_COLOR = QColor(0,140,110);
+    const QColor FIELD_COLOR = QColor(0,148,255);
     void drawFood(QPainter &painter);
     void drawPoison(QPainter &painter);
     void drawSnake(QPainter &painter);

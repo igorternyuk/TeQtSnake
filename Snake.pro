@@ -30,8 +30,7 @@ HEADERS  += \
     fieldwidget.h \
     enemy.h
 
-CONFIG += c++14
+CONFIG += c++1z
 
 FORMS    +=
 
-QMAKE_CXXFLAGS += -std=gnu++14

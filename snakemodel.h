@@ -11,7 +11,7 @@
 
 class Enemy;
 
-typedef std::vector< std::vector< bool > > boolMatrix;
+using boolMatrix = std::vector< std::vector<bool>>;
 
 class SnakeModel : public QObject
 {
@@ -45,14 +45,18 @@ public slots:
 protected:
     void timerEvent(QTimerEvent*) Q_DECL_OVERRIDE;
 private:
-    const int FIELD_WIDTH = 25;
-    const int FIELD_HEIGHT = 25;
-    const int START_SNAKE_SIZE = 6;
-    const int START_SNAKE_X = 5;
-    const int START_SNAKE_Y = 12;
-    const int TIMER_TIMEOUT_TIME = 800;
-    const int NEXT_LEVEL_FOOD_AMOUNT = 10;
-    const int SCORE_FOR_NEXT_POSION = 3;
+    enum
+    {
+        FIELD_WIDTH = 25,
+        FIELD_HEIGHT = 25,
+        START_SNAKE_SIZE = 3,
+        START_SNAKE_X = 5,
+        START_SNAKE_Y = 11,
+        TIMER_TIMEOUT_TIME = 800,
+        NEXT_LEVEL_FOOD_AMOUNT = 10,
+        SCORE_FOR_NEXT_POSION = 3
+    };
+
     bool isGameStarted_ = false;
     bool isGamePaused_ = false;
     bool isGameOver_ = false;

@@ -82,7 +82,6 @@ void FieldWidget::drawPoison(QPainter &painter)
 
 void FieldWidget::drawSnake(QPainter &painter)
 {
-   //static const int radius = 4;
    static const QBrush blueBrush(Qt::blue);
    static const QBrush cyanBrush(Qt::cyan);
    auto snakePoints = model_->getSnakePoints();
@@ -102,17 +101,27 @@ void FieldWidget::drawSnake(QPainter &painter)
 
 void FieldWidget::drawEnemy(QPainter &painter)
 {
-    static const QBrush greenBrush(Qt::black);
+    static const QBrush blackBrush(Qt::black);
+    static const QBrush redBrush(Qt::red);
     QPoint enemy = model_->getEnemyPosition();
-    painter.setBrush(greenBrush);
+    painter.setBrush(blackBrush);
     painter.drawEllipse(contentsRect().left() + enemy.x() * POINT_SIZE,
                         contentsRect().top() + enemy.y() * POINT_SIZE,
                         POINT_SIZE, POINT_SIZE);
+
+    painter.setBrush(redBrush);
+    painter.drawEllipse(contentsRect().left() + enemy.x() * POINT_SIZE + POINT_SIZE / 5,
+                        contentsRect().top() + enemy.y() * POINT_SIZE + POINT_SIZE / 3,
+                        POINT_SIZE / 6, POINT_SIZE / 6);
+
+    painter.drawEllipse(contentsRect().left() + enemy.x() * POINT_SIZE + POINT_SIZE * 3 / 5,
+                        contentsRect().top() + enemy.y() * POINT_SIZE + POINT_SIZE / 3,
+                        POINT_SIZE / 6, POINT_SIZE / 6);
 }
 
 void FieldWidget::drawWall(QPainter &painter)
 {
-    static const QBrush redBricksBrush(QColor(255, 85, 0));
+    static const QBrush redBricksBrush(Qt::yellow);
     auto wallPoints = model_->getWallPoints();
     for(auto point :  wallPoints) {
         QRect rect(contentsRect().left() + point.x() * POINT_SIZE,
@@ -125,14 +134,13 @@ void FieldWidget::drawWall(QPainter &painter)
 
 void FieldWidget::drawPauseText(QPainter &painter)
 {
-    //drawTextFromMatrix(painter, pauseMatrix, TEXT_LEFT, TEXT_TOP, Qt::magenta);
     auto pauseMatrix = model_->getPauseTextCode();
     const QBrush brush(Qt::magenta);
     painter.setBrush(brush);
     for(int i = 0; i < int(pauseMatrix.size()); ++i)
         for(int j = 0; j < int(pauseMatrix[i].size()); ++j)
             if(pauseMatrix[i][j] == 'X')
-                painter.drawEllipse(TEXT_LEFT + contentsRect().left() + j * POINT_SIZE,
+                painter.drawRect(TEXT_LEFT + contentsRect().left() + j * POINT_SIZE,
                                     TEXT_TOP + contentsRect().top() + i * POINT_SIZE,
                                     POINT_SIZE, POINT_SIZE);
 }
@@ -140,7 +148,7 @@ void FieldWidget::drawPauseText(QPainter &painter)
 void FieldWidget::drawGameOverText(QPainter &painter)
 {
     auto gameOverMatrix = model_->getGameOverTextCode();
-    drawTextFromMatrix(painter, gameOverMatrix, TEXT_LEFT, TEXT_TOP, Qt::yellow);
+    drawTextFromMatrix(painter, gameOverMatrix, TEXT_LEFT, TEXT_TOP, Qt::red);
 }
 
 void FieldWidget::drawTextFromMatrix(QPainter &painter, const boolMatrix &matrix,
@@ -151,7 +159,7 @@ void FieldWidget::drawTextFromMatrix(QPainter &painter, const boolMatrix &matrix
     for(int i = 0; i < int(matrix.size()); ++i)
         for(int j = 0; j < int(matrix[i].size()); ++j)
             if(matrix[i][j])
-                painter.drawEllipse(left + contentsRect().left() + j * POINT_SIZE,
+                painter.drawRect(left + contentsRect().left() + j * POINT_SIZE,
                                     top + contentsRect().top() + i * POINT_SIZE,
                                     POINT_SIZE, POINT_SIZE);
 }

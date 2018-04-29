@@ -115,9 +115,9 @@ void SnakeModel::createWall()
 std::vector<std::string> SnakeModel::getMap()
 {
     static const std::vector<std::string> map = {
-    "                         ",
-    "                         ",
-    "                         ",
+    "            X            ",
+    "            X            ",
+    "            X            ",
     "                         ",
     "    XXXXX XXXXX XXXXX    ",
     "            X            ",
@@ -127,7 +127,7 @@ std::vector<std::string> SnakeModel::getMap()
     "            X            ",
     "            X            ",
     "            X            ",
-    "            X            ",
+    "XXXXX       X       XXXXX",
     "            X            ",
     "            X            ",
     "            X            ",
@@ -137,9 +137,9 @@ std::vector<std::string> SnakeModel::getMap()
     "            X            ",
     "    XXXXX XXXXX XXXXX    ",
     "                         ",
-    "                         ",
-    "                         ",
-    "                         "};
+    "            X            ",
+    "            X            ",
+    "            X            "};
     return map;
 }
 
